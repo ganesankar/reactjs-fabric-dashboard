@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./style/blk-design-system.css";
+
 import "./App.css";
 // Components
 import Home from "./components/Home";
