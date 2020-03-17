@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { NavLink, Link } from "react-router-dom";
+import Sidebar from "react-sidebar";
 import {
   Button,
   Modal,
@@ -20,8 +21,13 @@ import {
 import { connect } from "react-redux";
 
 class Header extends React.Component {
-  state = {};
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      sidebarOpen: true
+    };
+    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+  }
   toggle = () => {
     this.setState({
       modal: !this.state.modal
@@ -45,7 +51,9 @@ class Header extends React.Component {
     this.props.addPost(post);
     this.toggle();
   };
-
+  onSetSidebarOpen(open) {
+    this.setState({ sidebarOpen: !this.state.sidebarOpen });
+  }
   render() {
     return (
       <Fragment>
@@ -57,7 +65,10 @@ class Header extends React.Component {
           <ModalBody></ModalBody>
         </Modal>
 
-        <Navbar className={`navbar-fixed ${this.state.color}`} expand="lg">
+        <Navbar
+          className={`navbar navbar-dark fixed-top bg-dark  ${this.state.color}`}
+          expand="lg"
+        >
           <Container fluid>
             <div className="navbar-wrapper">
               <div
@@ -75,8 +86,11 @@ class Header extends React.Component {
                   <span className="navbar-toggler-bar bar3" />
                 </button>
               </div>
+              <button onClick={() => this.onSetSidebarOpen(true)}>
+                Open sidebar
+              </button>
               <NavbarBrand href="/" onClick={e => e.preventDefault()}>
-                probe CV
+                DASHBOARD
               </NavbarBrand>
             </div>
             <button
@@ -103,8 +117,8 @@ class Header extends React.Component {
                     nav
                     onClick={e => e.preventDefault()}
                   >
-                    <b className="caret d-none d-lg-block d-xl-block" />
-                    <p className="d-lg-none"> MENU</p>
+                    {" "}
+                    MENU
                   </DropdownToggle>
                   <DropdownMenu className="dropdown-navbar" right tag="ul">
                     {this.props.menu &&
@@ -122,6 +136,49 @@ class Header extends React.Component {
             </Collapse>
           </Container>
         </Navbar>
+        <Sidebar
+          sidebar={
+            <div className="sidebar-sticky">
+              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>Saved reports</span>
+                <a
+                  className="d-flex align-items-center text-muted"
+                  href="/"
+                  aria-label="Add a new report"
+                ></a>
+              </h6>
+              <ul className="nav flex-column mb-2">
+                <li className="nav-item">
+                  <a className="nav-link" href="/">
+                    Current month
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/">
+                    Last quarter
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/">
+                    Social engagement
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/">
+                    Year-end sale
+                  </a>
+                </li>
+              </ul>
+            </div>
+          }
+          open={this.state.sidebarOpen}
+          onSetOpen={this.onSetSidebarOpen}
+          styles={{ sidebar: { background: "white", zIndex: 2000 } }}
+        >
+          <button onClick={() => this.onSetSidebarOpen(true)}>
+            Open sidebar
+          </button>
+        </Sidebar>
       </Fragment>
     );
   }

@@ -1,11 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Container } from "reactstrap";
 import moment from "moment";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
 // Components
 
 // Redux
@@ -83,29 +78,12 @@ class TimeLine extends Component {
         <div>Loading...</div>
       ) : (
         allDataSorted.map(item => {
-          return (
-            <Fragment key={item.id}>
-              <VerticalTimelineElement
-                className={`vertical-timeline-element--${item.className}`}
-                date={`${item.start} - ${item.end}`}
-                iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
-                icon={""}
-              >
-                <h3 className="vertical-timeline-element-title">
-                  {item.content}
-                </h3>
-                <h4 className="vertical-timeline-element-subtitle"></h4>
-                <p></p>
-              </VerticalTimelineElement>
-            </Fragment>
-          );
+          return <Fragment key={item.id}></Fragment>;
         })
       );
     return (
       <Fragment>
-        <Container className="py-4">
-          <VerticalTimeline>{allPosts}</VerticalTimeline>
-        </Container>
+        <Container className="py-4"></Container>
       </Fragment>
     );
   }

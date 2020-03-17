@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { Container } from "reactstrap";
-import Timeline from "react-visjs-timeline";
 import moment from "moment";
 
 // Redux
@@ -167,13 +166,6 @@ class Vis extends Component {
                         </label>
                       );
                     })}
-                  {items.length && (
-                    <Timeline
-                      selectHandler={this.selectHandler}
-                      options={this.state.options}
-                      items={items}
-                    />
-                  )}
                 </div>
               </div>
             </div>

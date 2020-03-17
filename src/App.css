@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+body {
+  font-size: 0.875rem;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
 .corner-ribbon {
   width: 0;
   height: 0;
